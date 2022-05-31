@@ -1,8 +1,54 @@
-#app {
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  padding: 40px 40px;
+}
+
+/**
+ * GAME STYLING
+ */
+.row {
+  display: flex;
+}
+
+#square {
+  align-items: center;
+  background: #fff;
+  border: 1px solid #999;
+  cursor: pointer;
+  display: flex;
+  font-size: 24px;
+  font-weight: bold;
+  height: 34px;
+  padding: 0;
+  width: 34px;
+}
+#square:hover {
+  background-color: e9e9e9;
+}
+
+.history-list {
+  list-style: decimal;
+  padding-left: 16px;
+  margin: 16px;
+}
+.history-list li {
+  margin-bottom: 8px;
+}
+
+.step {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: none;
+}
+.step:hover {
+  text-decoration: underline;
 }
