@@ -61,7 +61,7 @@ const printSelectedValues = () => {
  * @param {String} step
  */
 const goToStep = (step) => {
-  stepNumber = Number(step);
+  stepNumber = step;
 
   setNextPlayer();
   printSelectedValues();
@@ -104,9 +104,6 @@ const setHistory = () => {
   historyElement.innerHTML = `<ol class="history-list">${steps.join("")}</ol>`;
 };
 
-/**
- * Make visible which player is next or has won
- */
 const setStatus = () => {
   const statusElement = document.querySelector(selectors.status);
   const string = hasWinner ? status.winner : status.next;
@@ -124,13 +121,6 @@ const setNextPlayer = () => {
   activePlayer = stepNumber % 2 === 0 ? "O" : "X";
 };
 
-/**
- * Store clicked value
- * Set next player
- * Count the steps
- *
- * @param {HTMLElement} target
- */
 const clickHandlers = ({ target }) => {
   const id = Number(target.getAttribute("data-id"));
 
