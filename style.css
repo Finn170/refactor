@@ -28,9 +28,10 @@ body {
   height: 34px;
   padding: 0;
   width: 34px;
+  justify-content: space-around;
 }
 #square:hover {
-  background-color: e9e9e9;
+  background-color: rgb(187, 185, 185);
 }
 
 .history-list {

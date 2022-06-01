@@ -21,12 +21,12 @@ const status = {
 /**
  * Refactor: make the squares array more readable
  */
-const history = [
+var history = [
   { squares: [null, null, null, null, null, null, null, null, null] },
 ];
-const activePlayer = "X";
-const stepNumber = 0;
-const hasWinner = false;
+let activePlayer = "X";
+let stepNumber = 0;
+let hasWinner = false;
 
 /**
  * Remove all history values after clicked button index
@@ -60,12 +60,12 @@ const printSelectedValues = () => {
  *
  * @param {String} step
  */
-const goToStep = (step) => {
+  const goToStep = (step) => {
   stepNumber = step;
 
   setNextPlayer();
   printSelectedValues();
-  removeHistoryValue();
+  removeHistoryValues();
   setStatus();
 };
 
@@ -104,11 +104,12 @@ const setHistory = () => {
   historyElement.innerHTML = `<ol class="history-list">${steps.join("")}</ol>`;
 };
 
+// Sets status and winner
 const setStatus = () => {
   const statusElement = document.querySelector(selectors.status);
   const string = hasWinner ? status.winner : status.next;
 
-  statusElement.innerHTML = string;
+  statusElement.innerHTML = string.replace("[[player]]", hasWinner ? hasWinner : activePlayer);
 };
 
 /**
@@ -118,7 +119,7 @@ const setStatus = () => {
  * @returns X or O
  */
 const setNextPlayer = () => {
-  activePlayer = stepNumber % 2 === 0 ? "O" : "X";
+  activePlayer = stepNumber % 2 === 1 ? "O" : "X";
 };
 
 const clickHandlers = ({ target }) => {
@@ -129,6 +130,10 @@ const clickHandlers = ({ target }) => {
   const squares = current.squares.slice();
 
   if (calculateWinner(squares)) {
+    return;
+  }
+
+  if(squares[id] !== null){
     return;
   }
 
@@ -146,7 +151,7 @@ const clickHandlers = ({ target }) => {
   hasWinner = calculateWinner(squares);
 
   setNextPlayer();
-  setStatuss(hasWinner);
+  setStatus(hasWinner);
   setHistory();
 };
 
@@ -156,7 +161,7 @@ const clickHandlers = ({ target }) => {
  * @param {HTMLElement} element
  */
 const bind = (element) => {
-  element.addEventListener("click", clickHandler);
+  element.addEventListener("click", clickHandlers);
 
   document.addEventListener("click", ({ target }) => {
     if (target && target.classList.contains(classNames.step)) {
@@ -168,10 +173,11 @@ const bind = (element) => {
 /**
  * Initialize the game
  */
-const init = () => {
+ const init = () => {
   const squares = document.querySelectorAll(selectors.square);
 
   squares.forEach(bind);
 
   setStatus();
 };
+init();
