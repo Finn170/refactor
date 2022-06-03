@@ -32,7 +32,7 @@ let hasWinner = false;
  * Remove all history values after clicked button index
  */
 const removeHistoryValues = () => {
-  history.splice(stepNumber);
+  history.splice(stepNumber + 1);
 
   setHistory();
 };
@@ -45,11 +45,7 @@ const printSelectedValues = () => {
   const current = history[stepNumber];
 
   squares.forEach((element, index) => {
-    const value = current.squares[index];
-
-    if (value === null) {
-      return;
-    }
+    const value = current.squares[index] || '';
 
     element.innerHTML = value;
   });
@@ -61,7 +57,7 @@ const printSelectedValues = () => {
  * @param {String} step
  */
   const goToStep = (step) => {
-  stepNumber = step;
+  stepNumber = parseInt(step, 10);
 
   setNextPlayer();
   printSelectedValues();

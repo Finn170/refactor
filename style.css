@@ -17,7 +17,11 @@ body {
   display: flex;
 }
 
-#square {
+.game{
+  display: flex;
+}
+
+.square {
   align-items: center;
   background: #fff;
   border: 1px solid #999;
@@ -30,14 +34,13 @@ body {
   width: 34px;
   justify-content: space-around;
 }
-#square:hover {
+.square:hover {
   background-color: rgb(187, 185, 185);
 }
 
 .history-list {
   list-style: decimal;
-  padding-left: 16px;
-  margin: 16px;
+  padding: 20px;
 }
 .history-list li {
   margin-bottom: 8px;
@@ -52,4 +55,9 @@ body {
 }
 .step:hover {
   text-decoration: underline;
+}
+
+.info{
+  padding-top: 5px;
+  padding-left: 25px;
 }
